@@ -1,0 +1,135 @@
+/*Mobile First Style*/
+.main {
+  width          : var(--full-width);
+  display        : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items    : flex-start;
+
+  padding: 0 0.5rem;
+}
+
+.main .select {
+  width   : var(--full-width);
+  position: relative;
+}
+
+.main .select .display {
+  width : var(--full-width);
+  height: var(--ui-height);
+
+  border          : 2px solid var(--border-color-light);
+  border-radius   : var(--border-radius);
+  background-color: #FFFFFF;
+  padding         : 0 0.7rem;
+  color           : var(--field-color);
+  transition      : all 0.3s ease-in-out;
+
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.main .select .display:hover {
+  border: 2px solid var(--border-color) !important;
+}
+
+.main .select .display.error,
+.main .select .display.error:focus,
+.main .select .display.error:hover {
+  border: 2px solid var(--danger) !important;
+}
+
+.main span.error {
+  width    : var(--full-width);
+  font-size: var(--text-small);
+  color    : var(--danger);
+  padding  : 0.2rem;
+}
+
+.main .select .display label {
+  width           : var(--full-width);
+  height          : 100%;
+  border          : none;
+  outline         : none;
+  background-color: var(--white);
+  color           : var(--field-color);
+
+  display        : flex;
+  justify-content: flex-start;
+  align-items    : center;
+
+  font-size: var(--text-normal);
+}
+
+.main .select .display label.placeholder {
+  color: var(--placeholder-color);
+}
+
+.main .select .display .icon {
+  width : 2rem;
+  height: 100%;
+
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.main .select .optionsList {
+  width              : var(--full-width);
+  height             : 10.2rem;
+  /* overflow-x      : auto; */
+  padding            : 0;
+  background-color   : var(--ui-background-color-one);
+  border-radius      : 0 0 0.3rem 0.3rem;
+
+  position: absolute;
+
+  z-index: 1;
+
+}
+
+.main .select .optionsList.showUpside {
+  bottom       : 100%;
+  left         : 0;
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.main .select .optionsList .itemsWrapper {
+  width   : var(--full-width);
+  height  : 9.7rem;
+  overflow: auto;
+  padding : 0.5rem 0.5rem 0 0.5rem;
+}
+
+/* width */
+.main .select .optionsList .itemsWrapper::-webkit-scrollbar {
+  width: 0;
+}
+
+.main .select .optionsList .option {
+  width           : var(--full-width);
+  height          : 2.3rem;
+  display         : flex;
+  justify-content : flex-start;
+  align-items     : center;
+  padding         : 0.5rem;
+  /* border-radius: 0.3rem; */
+  border-bottom   : 0.05rem dotted hsla(0, 0%, 100%, 0.232);
+
+  color     : var(--white);
+  transition: all 0.3s ease-in-out;
+  font-size: 0.9rem;
+}
+
+.main .select .optionsList .option:hover {
+  background-color: hsla(0, 0%, 100%, 0.072);
+}
+
+.main .select .optionsList .option.focused {
+  background-color: hsla(0, 0%, 100%, 0.072);
+  color           : var(--yellow-one);
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {}

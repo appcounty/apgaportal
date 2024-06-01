@@ -1,0 +1,27 @@
+/*Mobile First Style*/
+.form {
+  width : 100%;
+  height: auto;
+}
+
+.form h2 {
+  width: var(--full-width);
+  height: auto;
+  padding: 1rem;
+  color: var(--green-two);
+}
+
+.form form {
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+
+  display        : flex;
+  flex-direction : column;
+  justify-content: flex-start;
+  align-items    : center;
+  row-gap        : 0.5rem;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {}

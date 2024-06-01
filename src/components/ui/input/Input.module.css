@@ -1,0 +1,44 @@
+/*Mobile First Style*/
+div.input {
+  width: 100%;
+  height: auto;
+
+  padding: 0 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.input input {
+  width: 100%;
+  height: var(--ui-height);
+
+  border: 2px solid var(--border-color-light);
+  border-radius: var(--border-radius);
+  outline: none;
+
+  padding: 0 0.5rem;
+  font-size: var(--text-normal);
+  color: var(--field-color);
+
+  transition: all 0.5s ease-in-out;
+}
+
+div.input input:hover,
+div.input input:focus {
+  border: 2px solid var(--border-color);
+}
+
+div.input span.error {
+  width    : var(--full-width);
+  font-size: var(--text-small);
+  color    : var(--danger);
+  padding  : 0.2rem;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+
+}

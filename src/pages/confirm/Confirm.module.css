@@ -1,0 +1,28 @@
+/*Mobile First Style*/
+.main {
+  width: var(--full-width);
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.main .messageBox {
+  width: 80%;
+  height: 25rem;
+
+  background-color: var(--white);
+  border-radius: 1rem;
+
+  text-align: center;
+  font-size: 1.1rem;
+
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+
+}

@@ -1,0 +1,38 @@
+.main {
+  width          : var(--full-width);
+  height         : auto;
+  display        : flex;
+  flex-direction : column;
+  justify-content: space-between;
+  align-items    : center;
+  padding        : 1rem;
+  min-height     : 100vh;
+}
+
+.form {
+  width: var(--full-width);
+}
+
+.section {
+  width : var(--full-width);
+  height: auto;
+
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+}
+
+.section.columnSection {
+  justify-content: space-evenly;
+}
+
+.section.buttonWrapper {
+  padding        : 0.5rem;
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) {
+  .form {
+    width: 50rem;
+  }
+}

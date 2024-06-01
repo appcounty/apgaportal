@@ -1,0 +1,58 @@
+/*Mobile First Style*/
+.main {
+  width        : 80%;
+  height       : auto;
+  padding      : 0.5em;
+  border-radius: 0.3rem;
+
+  display        : flex;
+  justify-content: flex-start;
+  align-items    : center;
+
+  margin: 0.5rem auto 0 auto;
+
+  font-size  : 0.9rem;
+  font-weight: 600;
+
+  position: absolute;
+  bottom: 0.5rem;
+
+  z-index: 1;
+}
+
+.main.success {
+  background-color: hsl(134, 41%, 88%);
+  color           : #155724;
+}
+
+.main.error {
+  background-color: #dc0933;
+  color           : #ffffff;
+}
+
+.main.information {
+  background-color: hsl(198, 100%, 83%);
+
+}
+
+.main.warning {
+  background-color: hsl(56, 74%, 91%);
+}
+
+.main .icon {
+  margin-right: 1rem;
+}
+
+.main .close {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+  /* .main {
+    width    : 87%;
+    max-width: 80rem;
+  } */
+}

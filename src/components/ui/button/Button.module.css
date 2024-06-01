@@ -1,0 +1,32 @@
+/*Mobile First Style*/
+.button {
+  width  : 10rem;
+  height : var(--ui-height);
+  border : none;
+  padding: 0 1rem;
+  color  : white;
+
+  cursor: pointer;
+
+  background-color : var(--ui-background-color-two);
+  background-repeat: no-repeat;
+  font-family      : var(--regular-font-family);
+
+  transition: all 0.3s ease-in-out;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.button:hover {
+  background-color: var(--ui-background-color-one);
+}
+
+.button:active {
+  background-color: var(--ui-background-color-two);
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {}

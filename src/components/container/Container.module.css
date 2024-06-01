@@ -1,0 +1,12 @@
+/*Mobile First Style*/
+.container {
+  width : 100%;
+  margin: auto;
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 768px) {
+  .container {
+    width : 70%;
+  }
+}
