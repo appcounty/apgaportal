@@ -10,6 +10,7 @@ type Option = {
 type SelectProps = {
   options: Option[];
   defaultOption?: Option;
+  defaultValue?: string | number;
   placeholder?: string;
   selectValueHandler?: (value: string) => void;
   error?: boolean;
@@ -18,6 +19,7 @@ type SelectProps = {
 const Select = ({
   options,
   defaultOption,
+  defaultValue,
   placeholder,
   selectValueHandler,
   error,
@@ -35,6 +37,20 @@ const Select = ({
       setSelectedItem(defaultOption);
     }
   }, [defaultOption]);
+
+  useEffect(()=> {
+    console.log("SELECTED VALUE: ", defaultValue);
+    if (defaultValue) {
+      const option = options.find(option => option.value === defaultValue);
+      if (option) {
+        selectValueHandler && selectValueHandler(option.value);
+        setSelectedItem(option);
+      }
+    } else {
+      // selectValueHandler && selectValueHandler("");
+      setSelectedItem(null);
+    }
+  }, [defaultValue]);
 
   useEffect(() => {
     if (isOpen) {

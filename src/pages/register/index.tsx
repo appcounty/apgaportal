@@ -195,10 +195,10 @@ const Register = (): JSX.Element => {
     }
   };
 
-  const fetchWards = async (lgaId: string) => {
+  const fetchWards = async (stateId: string, lgaId: string) => {
     try {
       const response = await makeRequest(
-        `/getwards?lga_id=${lgaId}`,
+        `/getwards?lga_id=${lgaId}&state_id=${stateId}`,
         HTTPMethods.GET,
         undefined,
         undefined
@@ -220,10 +220,14 @@ const Register = (): JSX.Element => {
     }
   };
 
-  const fetchPollingUnits = async (wardId: string) => {
+  const fetchPollingUnits = async (
+    stateId: string,
+    lgaId: string,
+    wardId: string
+  ) => {
     try {
       const response = await makeRequest(
-        `/getPollingUnit?ward_id=${wardId}`,
+        `/getPollingUnit?state_id=${stateId}&lga_id=${lgaId}&ward_id=${wardId}`,
         HTTPMethods.GET,
         undefined,
         undefined
@@ -284,9 +288,8 @@ const Register = (): JSX.Element => {
           undefined
         );
 
-        
         const { feedback, message, cause } = response;
-        
+
         if (feedback !== "error") {
           router.push({
             pathname: `/confirm`,
@@ -460,6 +463,11 @@ const Register = (): JSX.Element => {
     }));
 
     fetchLga(state, "lgaOfOrigin");
+
+    setFields((values) => ({
+      ...values,
+      lgaOfOrigin: "",
+    }));
   };
 
   const selectStateOfResidenceHandler = (state: string) => {
@@ -469,6 +477,15 @@ const Register = (): JSX.Element => {
     }));
 
     fetchLga(state, "lgaOfResidence");
+    setWards([]);
+    setPollingUnits([]);
+
+    setFields((values) => ({
+      ...values,
+      lgaOfResidence: "",
+      ward: "",
+      pollingUnit: "",
+    }));
   };
 
   const selectLgaOriginHandler = (lga: string) => {
@@ -483,7 +500,14 @@ const Register = (): JSX.Element => {
       ...values,
       lgaOfResidence: lga,
     }));
-    fetchWards(lga);
+    fetchWards(fields.stateOfResidence, lga);
+
+    setPollingUnits([]);
+    setFields((values) => ({
+      ...values,
+      ward: "",
+      pollingUnit: "",
+    }));
   };
 
   const selectReligionHandler = (religion: string) => {
@@ -505,19 +529,23 @@ const Register = (): JSX.Element => {
       ...values,
       ward: ward,
     }));
-    fetchPollingUnits(ward);
+    fetchPollingUnits(fields.stateOfResidence, fields.lgaOfResidence, ward);
+    setFields((values) => ({
+      ...values,
+      pollingUnit: "",
+    }));
   };
 
   const selectPollingUnitHandler = (pUnit: string) => {
     setFields((values) => ({
       ...values,
-      pUnit: pUnit,
+      pollingUnit: pUnit,
     }));
   };
 
   const clickHandler = () => {
     setIsError(false);
-  }
+  };
 
   return (
     <div className={styles.main}>
@@ -543,6 +571,7 @@ const Register = (): JSX.Element => {
 
         {/* Gender Select */}
         <Select
+          defaultValue={fields.gender}
           error={errorField.gender}
           selectValueHandler={selectGenderHandler}
           placeholder="Gender"
@@ -649,6 +678,7 @@ const Register = (): JSX.Element => {
         <section className={`${styles.section} ${styles.columnSection}`}>
           {/* State of Origin Select */}
           <Select
+            defaultValue={fields.stateOfOrigin}
             error={errorField.stateOfOrigin}
             selectValueHandler={selectStateOfOriginHandler}
             placeholder="State of Origin"
@@ -657,6 +687,7 @@ const Register = (): JSX.Element => {
 
           {/* LGA of Origin Select */}
           <Select
+            defaultValue={fields.lgaOfOrigin}
             error={errorField.lgaOfOrigin}
             selectValueHandler={selectLgaOriginHandler}
             placeholder="LGA of Origin"
@@ -671,6 +702,7 @@ const Register = (): JSX.Element => {
         <section className={`${styles.section} ${styles.columnSection}`}>
           {/* State Select */}
           <Select
+            defaultValue={fields.stateOfResidence}
             error={errorField.stateOfResidence}
             selectValueHandler={selectStateOfResidenceHandler}
             placeholder="State"
@@ -679,6 +711,7 @@ const Register = (): JSX.Element => {
 
           {/* LGA Select */}
           <Select
+            defaultValue={fields.lgaOfResidence}
             error={errorField.lgaOfResidence}
             selectValueHandler={selectLgaResidenceHandler}
             placeholder="Local government"
@@ -689,6 +722,7 @@ const Register = (): JSX.Element => {
         <section className={`${styles.section} ${styles.columnSection}`}>
           {/* Ward Select */}
           <Select
+            defaultValue={fields.ward}
             error={errorField.ward}
             selectValueHandler={selectWardHandler}
             placeholder="Ward"
@@ -697,6 +731,7 @@ const Register = (): JSX.Element => {
 
           {/* Polling Unit Select */}
           <Select
+            defaultValue={fields.pollingUnit}
             error={errorField.pollingUnit}
             selectValueHandler={selectPollingUnitHandler}
             placeholder="Polling Unit"

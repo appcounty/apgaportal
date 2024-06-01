@@ -1,9 +1,10 @@
 /*Mobile First Style*/
 .main {
   width: var(--full-width);
-  height: 100vh;
+  height: auto;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }

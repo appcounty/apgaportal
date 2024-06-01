@@ -8,20 +8,40 @@ const Confirm = (): JSX.Element => {
   const router = useRouter();
   const { referenceCode } = router.query;
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<{label: string, value: string}[]>([]);
+  const [name, setName] = useState<string>("");
 
   useEffect(()=> {
     const fetchData = async() => {
-      const response = await makeRequest(
-        `/verifyMember?referenceCode=${referenceCode}`,
-        HTTPMethods.GET,
-        undefined
-      );
-
-      const { feedback, data } = response;
-      const items = data[0];
-
-      console.log(items);
+      try {
+        const response = await makeRequest(
+          `/verifyMember?referenceCode=${referenceCode}`,
+          HTTPMethods.GET,
+          undefined
+        );
+  
+        const { feedback, data } = response;
+        console.log(feedback, data, response);
+  
+        if (feedback !== "error") {
+          const items = data[0];
+          setName(
+            `${items.title} ${items.firstName} ${items.middleName} ${items.surname}`
+          );
+    
+          console.log(items);
+    
+          setItems(Object.keys(items).map(key => ({
+            label: key,
+            value: items[key]
+          })));
+        } else {
+          // error handling...
+        }
+      } catch (error) {
+        // error handling...
+        console.error(error);
+      }
     };
 
     fetchData();
@@ -60,7 +80,7 @@ const Confirm = (): JSX.Element => {
         </p>
       </div>
 
-      {/* <Display /> */}
+      {/* <Display items={items} title={`${name} Profile`} /> */}
     </div>
   );
 };
