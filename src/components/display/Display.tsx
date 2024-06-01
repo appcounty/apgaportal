@@ -18,9 +18,20 @@ const Display = ({ items, title }: DisplayProps): JSX.Element => {
       <h2>{title}</h2>
       <Separator />
       {items.length ? (
-        items.map((item, index) => (
-          <Item key={index} label={item.label} value={item.value} />
-        ))
+        items.map((item, index) => {
+          let rowColor = "white";
+          if (index % 2 === 0) {
+            rowColor = "#eeeeee";
+          }
+          return (
+            <Item
+              style={{ backgroundColor: rowColor }}
+              key={index}
+              label={item.label}
+              value={item.value}
+            />
+          );
+        })
       ) : (
         <div></div>
       )}

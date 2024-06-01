@@ -8,79 +8,85 @@ const Confirm = (): JSX.Element => {
   const router = useRouter();
   const { referenceCode } = router.query;
 
-  const [items, setItems] = useState<{label: string, value: string}[]>([]);
+  const [items, setItems] = useState<{ label: string; value: string }[]>([]);
   const [name, setName] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
 
-  useEffect(()=> {
-    const fetchData = async() => {
-      try {
-        const response = await makeRequest(
-          `/verifyMember?referenceCode=${referenceCode}`,
-          HTTPMethods.GET,
-          undefined
-        );
-  
-        const { feedback, data } = response;
-        console.log(feedback, data, response);
-  
-        if (feedback !== "error") {
-          const items = data[0];
-          setName(
-            `${items.title} ${items.firstName} ${items.middleName} ${items.surname}`
+  useEffect(() => {
+    const fetchData = async () => {
+      if (referenceCode) {
+        try {
+          const response = await makeRequest(
+            `/verifyMember?referenceCode=${referenceCode}`,
+            HTTPMethods.GET,
+            undefined
           );
-    
-          console.log(items);
-    
-          setItems(Object.keys(items).map(key => ({
-            label: key,
-            value: items[key]
-          })));
-        } else {
+
+          const { feedback, message, data } = response;
+          console.log(feedback, data, response);
+
+          if (feedback !== "error") {
+            const items = data[0];
+            setName(
+              `${items.title} ${items.firstName} ${items.middleName} ${items.lastName}`
+            );
+
+            setStatus(feedback);
+
+            console.log(items);
+
+            setItems(
+              Object.keys(items).map((key) => ({
+                label: key,
+                value: items[key],
+              }))
+            );
+          } else {
+            // error handling...
+          }
+        } catch (error) {
           // error handling...
+          console.error(error);
         }
-      } catch (error) {
-        // error handling...
-        console.error(error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [referenceCode]);
 
   return (
     <div className={styles.main}>
       <div className={styles.messageBox}>
         <p>
-          Your registration has been submitted successfully. Find your reference
-          code below:
-        </p>
-        <br />
-        <p style={{ fontWeight: "600" }}>{referenceCode}</p>
-        <br />
-        <p>
-          You can use the reference code to track your registration status by
-          coming back to this portal and using the{" "}
-          <span style={{ fontWeight: "600" }}>Check Registration</span>
-          Link.
-        </p>
-        <br />
-        <p>
-          You will also receive an email and text notification once your
-          application is approved.
-        </p>
-        <br />
-
-        <p>
-          You can also refer your friends and family to register as an APGA
-          member using your referral code:{" "}
+          {String(status).toLowerCase() === "waiting" ? "Hello" : "Congratulations🎉"},{" "}
           <span style={{ fontWeight: "600" }}>
-            https://apga.ng/refer/
-            {referenceCode}
+            {String(name).toUpperCase()}
+          </span>!
+        </p>
+        <br />
+        <p>
+          {String(status).toLowerCase() === "waiting"
+            ? `Your registration is awaiting confirmation. Please check back with us on this portal in a bit using your reference code😉`
+            : `Your application has been confirmed. You are now a legitimate APGA party member.`}
+        </p>
+        <br />
+        <p>
+          However, you can always refer your friends and family to register as
+          an APGA member using your referral code:{" "}
+          <span style={{ fontWeight: "600" }}>
+            https://apga.ng?ref={referenceCode}
           </span>
         </p>
+        <br />
+        {status === "waiting" ? (
+          <p>
+            Please note that you will receive an email and text notification
+            once your application for membership is approved.
+          </p>
+        ) : null}
       </div>
 
-      {/* <Display items={items} title={`${name} Profile`} /> */}
+      <Display items={items} title={`${name} Profile`} />
     </div>
   );
 };

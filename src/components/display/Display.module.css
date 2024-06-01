@@ -1,0 +1,17 @@
+/*Mobile First Style*/
+.main {
+  width: var(--full-width);
+  height: auto;
+
+  background-color: var(--white);
+  padding: 4rem;
+
+  border-radius: 1rem;
+
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+/*Devices larger than mobile phone*/
+@media (min-width: 576px) {
+
+}
