@@ -1,10 +1,11 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./Button.module.css";
 import Icon from "@/components/utilities/Icons";
 
 type ButtonProps = {
   type?: "button" | "submit" | "reset" | undefined;
-  text: string;
+  text?: string;
+  content?: string | ReactNode;
   clickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
   loading?: boolean;
   style?: React.CSSProperties,
@@ -17,7 +18,8 @@ const Button = ({
   clickHandler,
   loading,
   style,
-  className
+  className,
+  content
 }: ButtonProps): JSX.Element => {
   return (
     <button
@@ -26,7 +28,7 @@ const Button = ({
       onClick={clickHandler}
       type={type || "button"}
     >
-      {text}
+      {text || content}
       {loading ? (
         <Icon
           className="rotate"
