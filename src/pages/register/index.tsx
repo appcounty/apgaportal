@@ -581,7 +581,7 @@ const Register = (): JSX.Element => {
 
         <Separator />
 
-        <section className={`${styles.section} ${styles.columnSection}`}>
+        <section className={`grid-container`}>
           {/* Firstname Field */}
           <Input
             error={errorField.firstName}
@@ -612,7 +612,7 @@ const Register = (): JSX.Element => {
 
         <Separator />
 
-        <section className={`${styles.section} ${styles.columnSection}`}>
+        <section className={`grid-container`}>
           {/* Date of Field */}
           <Input
             error={errorField.dateOfBirth}
@@ -646,7 +646,7 @@ const Register = (): JSX.Element => {
 
         <Separator />
 
-        <section className={`${styles.section} ${styles.columnSection}`}>
+        <section className={`grid-container`}>
           {/* Vin Field */}
           <Input
             error={errorField.vin}
@@ -676,7 +676,7 @@ const Register = (): JSX.Element => {
 
         <Separator />
 
-        <section className={`${styles.section} ${styles.columnSection}`}>
+        <section className={`grid-container`}>
           {/* State of Origin Select */}
           <Select
             defaultValue={fields.stateOfOrigin}
@@ -700,7 +700,7 @@ const Register = (): JSX.Element => {
         <h4 style={{ color: "#003a03" }}>Polling Unit Information</h4>
         <Separator />
 
-        <section className={`${styles.section} ${styles.columnSection}`}>
+        <section className={`grid-container`}>
           {/* State Select */}
           <Select
             defaultValue={fields.stateOfResidence}
@@ -720,7 +720,7 @@ const Register = (): JSX.Element => {
           />
         </section>
 
-        <section className={`${styles.section} ${styles.columnSection}`}>
+        <section className={`grid-container`}>
           {/* Ward Select */}
           <Select
             defaultValue={fields.ward}
@@ -742,7 +742,7 @@ const Register = (): JSX.Element => {
 
         <Separator />
 
-        <section className={`${styles.section} ${styles.columnSection}`}>
+        <section className={`grid-container`}>
           {/* Occupation Field */}
           <Input
             error={errorField.referral}
