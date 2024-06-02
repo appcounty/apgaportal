@@ -3,6 +3,7 @@ import styles from "./Confirm.module.css";
 import { useRouter } from "next/router";
 import Display from "@/components/display/Display";
 import { HTTPMethods, makeRequest } from "@/util/httpConfig";
+import Link from "next/link";
 
 const Confirm = (): JSX.Element => {
   const router = useRouter();
@@ -58,10 +59,7 @@ const Confirm = (): JSX.Element => {
     <div className={styles.main}>
       <div className={styles.messageBox}>
         <p>
-          {String(status).toLowerCase() === "waiting"
-            ? "Hello"
-            : "Congratulations🎉"}
-          ,{" "}
+          Hello,{" "}
           <span style={{ fontWeight: "600" }}>
             {String(name).toUpperCase()}
           </span>
@@ -77,7 +75,7 @@ const Confirm = (): JSX.Element => {
 
         <p>
           Your reference code is:{" "}
-          <span style={{ fontWeight: "600" }}>{referenceCode}</span>
+            <span style={{ fontWeight: "600" }}>{referenceCode}</span>
         </p>
         <br />
 
@@ -90,12 +88,14 @@ const Confirm = (): JSX.Element => {
 
         <p>
           Your referral link is:{" "}
-          <span style={{ fontWeight: "600" }}>
-            https://apga.ng?ref={referenceCode}
-          </span>
+          <Link href={`https://www.apga.ng?ref=${referenceCode}`}>
+            <span style={{ fontWeight: "600" }}>
+              https://apga.ng?ref={referenceCode}
+            </span>
+          </Link>
         </p>
         <br />
-        <p>You can use to invite your friends and family to join APGA!</p>
+        <p>You can use it to invite your friends and family to join APGA!</p>
       </div>
 
       {/* <Display items={items} title={`${name} Profile`} /> */}

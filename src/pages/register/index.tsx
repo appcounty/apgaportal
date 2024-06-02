@@ -123,6 +123,7 @@ const Register = (): JSX.Element => {
   const titles = [
     { value: "Mr", label: "Mr" },
     { value: "Mrs", label: "Mrs" },
+    { value: "Ms", label: "Ms" },
     { value: "Prof", label: "Prof" },
     { value: "Dr", label: "Dr" },
     { value: "Chief", label: "Chief" },
