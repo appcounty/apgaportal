@@ -86,7 +86,7 @@ const Confirm = (): JSX.Element => {
         ) : null}
       </div>
 
-      <Display items={items} title={`${name} Profile`} />
+      {/* <Display items={items} title={`${name} Profile`} /> */}
     </div>
   );
 };
