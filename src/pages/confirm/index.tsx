@@ -64,48 +64,50 @@ const Confirm = (): JSX.Element => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.messageBox}>
-        <p>
-          Hello,{" "}
-          <span style={{ fontWeight: "600" }}>
-            {String(name).toUpperCase()}
-          </span>
-          !
-        </p>
-        <br />
+      {
+        String(status).toLowerCase() === "waiting" ? (
+          <div className={styles.messageBox}>
+            <p>
+              Hello,{" "}
+              <span style={{ fontWeight: "600" }}>
+                {String(name).toUpperCase()}
+              </span>
+              !
+            </p>
+            <br />
 
-        <p>
-          Your registration has been submitted successfully and is pending
-          approval.
-        </p>
-        <br />
+            <p>
+              Your registration has been submitted successfully and is pending
+              approval.
+            </p>
+            <br />
 
-        <p>
-          Your reference code is:{" "}
-            <span style={{ fontWeight: "600" }}>{referenceCode}</span>
-        </p>
-        <br />
+            <p>
+              Your reference code is:{" "}
+                <span style={{ fontWeight: "600" }}>{referenceCode}</span>
+            </p>
+            <br />
 
-        <p>
-          Copy and keep this reference code for future reference. You can also
-          use it to check the status of your registration by coming back to this
-          site and clicking on Check Registration.
-        </p>
-        <br />
+            <p>
+              Copy and keep this reference code for future reference. You can also
+              use it to check the status of your registration by coming back to this
+              site and clicking on Check Registration.
+            </p>
+            <br />
 
-        <p>
-          Your referral link is:{" "}
-          <Link href={`https://www.apga.ng?ref=${referenceCode}`}>
-            <span style={{ fontWeight: "600" }}>
-              https://apga.ng?ref={referenceCode}
-            </span>
-          </Link>
-        </p>
-        <br />
-        <p>You can use it to invite your friends and family to join APGA!</p>
-      </div>
-
-      {/* <Display items={items} title={`${name} Profile`} /> */}
+            <p>
+              Your referral link is:{" "}
+              <Link href={`https://www.apga.ng?ref=${referenceCode}`}>
+                <span style={{ fontWeight: "600" }}>
+                  https://apga.ng?ref={referenceCode}
+                </span>
+              </Link>
+            </p>
+            <br />
+            <p>You can use it to invite your friends and family to join APGA!</p>
+          </div>
+        ) : <Display items={items} title={`${name} Profile`} />
+      }
     </div>
   );
 };
