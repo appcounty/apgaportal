@@ -8,6 +8,7 @@ type inputProps = {
   value: string | null | "";
   placeholder?: string;
   changeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className?:string;
 };
 
 const Input = ({
@@ -17,9 +18,10 @@ const Input = ({
   value,
   placeholder,
   changeHandler,
+  className,
 }: inputProps): JSX.Element => {
   return (
-    <div className={styles.input}>
+    <div className={`${styles.input} ${className || ""}`}>
       <input
         style={{
           border: error

@@ -14,6 +14,7 @@ type SelectProps = {
   placeholder?: string;
   selectValueHandler?: (value: string) => void;
   error?: boolean;
+  className?:string;
 };
 
 const Select = ({
@@ -23,6 +24,7 @@ const Select = ({
   placeholder,
   selectValueHandler,
   error,
+  className
 }: SelectProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<Option | null>(null);
@@ -190,7 +192,7 @@ const Select = ({
   return (
     <div
       ref={mainRef}
-      className={styles.main}
+      className={`${styles.main} ${className || ""}`}
       onKeyDown={handleKeydown}
       tabIndex={0}
     >

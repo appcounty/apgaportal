@@ -14,20 +14,20 @@
   --backgound-color-two    : #FBD800;
   --ui-background-color-one: #026334;
   --ui-background-color-two: #003a03;
-  
+
 
   /* Colors */
-  --white : #FFFFFF;
-  --yellow-one: var(--backgound-color-two);
-  --yellow-two: var(--backgound-color-one);
-  --green-one: var(--ui-background-color-one);
-  --green-two: var(--ui-background-color-two);
-  --danger: #dc0933;
-  --field-color : rgb(28, 28, 28);
-  --border-color : var(--ui-background-color-one);
-  --border-color-two : #454545;
-  --border-color-light : hsla(151, 96%, 20%, 0.777);
-  --placeholder-color: #7b7b7b;
+  --white             : #FFFFFF;
+  --yellow-one        : var(--backgound-color-two);
+  --yellow-two        : var(--backgound-color-one);
+  --green-one         : var(--ui-background-color-one);
+  --green-two         : var(--ui-background-color-two);
+  --danger            : #dc0933;
+  --field-color       : rgb(28, 28, 28);
+  --border-color      : var(--ui-background-color-one);
+  --border-color-two  : #454545;
+  --border-color-light: hsla(151, 96%, 20%, 0.777);
+  --placeholder-color : #7b7b7b;
 
   /* Font sizes */
   --text-small  : 0.7rem;
@@ -96,8 +96,6 @@ a {
   grid-template-columns: 1fr;
   gap                  : 10px;
 
-  /* padding: 5rem 0; */
-
   margin: auto;
 }
 
@@ -111,25 +109,48 @@ a {
   row-gap              : 10px;
 }
 
-/*Devices larger than mobile phone*/
+/* Devices larger than mobile phone */
 @media (min-width: 576px) {
   .grid-container {
-    justify-content: center;
+    justify-content      : center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-container.col-two {
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .grid-item {
-    grid-template-columns: repeat(2, 1fr);
-    gap                  : 30px;
+    grid-template-columns: 1fr;
+  }
+
+  .span-two-columns {
+    grid-column: span 2;
   }
 }
 
+/* Devices larger than tablets */
 @media (min-width: 992px) {
   .grid-container {
-    justify-content: center;
+    justify-content      : center;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .grid-item {
-    grid-template-columns: repeat(3, 1fr);
-    gap                  : 50px;
+    grid-template-columns: 1fr;
+  }
+
+  .span-two-columns {
+    grid-column: span 1;
+  }
+}
+
+@media(min-width: 576px) and (min-width: 992px) {
+  .grid-container.col-two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-container.col-one {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

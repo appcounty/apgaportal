@@ -559,7 +559,7 @@ const Register = (): JSX.Element => {
       ) : null}
       <Form
         title="Bio information"
-        className={styles.form}
+        className={[styles.form].join("")}
         submitHandler={submitHandler}
       >
         {/* Title Field */}
@@ -584,6 +584,7 @@ const Register = (): JSX.Element => {
         <section className={`grid-container`}>
           {/* Firstname Field */}
           <Input
+            className="grid-item"
             error={errorField.firstName}
             name={"firstName"}
             value={fields.firstName}
@@ -593,6 +594,7 @@ const Register = (): JSX.Element => {
 
           {/* Middle name Field */}
           <Input
+            className="grid-item"
             error={errorField.middleName}
             name={"middleName"}
             value={fields.middleName}
@@ -602,6 +604,7 @@ const Register = (): JSX.Element => {
 
           {/* Surname Field */}
           <Input
+            className="grid-item span-two-columns"
             error={errorField.surname}
             name={"surname"}
             value={fields.surname}
@@ -615,6 +618,7 @@ const Register = (): JSX.Element => {
         <section className={`grid-container`}>
           {/* Date of Field */}
           <Input
+            className="grid-item"
             error={errorField.dateOfBirth}
             type="date"
             name={"dateOfBirth"}
@@ -625,6 +629,7 @@ const Register = (): JSX.Element => {
 
           {/* Email Field */}
           <Input
+            className="grid-item"
             error={errorField.email}
             type="email"
             name={"email"}
@@ -635,6 +640,7 @@ const Register = (): JSX.Element => {
 
           {/* phoneNumber Field */}
           <Input
+            className="grid-item span-two-columns"
             error={errorField.phoneNumber}
             type="number"
             name={"phoneNumber"}
@@ -649,6 +655,7 @@ const Register = (): JSX.Element => {
         <section className={`grid-container`}>
           {/* Vin Field */}
           <Input
+            className="grid-item"
             error={errorField.vin}
             name={"vin"}
             value={fields.vin}
@@ -658,6 +665,7 @@ const Register = (): JSX.Element => {
 
           {/* Occupation Field */}
           <Input
+            className="grid-item"
             error={errorField.occupation}
             name={"occupation"}
             value={fields.occupation}
@@ -667,6 +675,7 @@ const Register = (): JSX.Element => {
 
           {/* Religion Select */}
           <Select
+            className="grid-item span-two-columns"
             error={errorField.religion}
             selectValueHandler={selectReligionHandler}
             placeholder="Religion"
@@ -676,9 +685,10 @@ const Register = (): JSX.Element => {
 
         <Separator />
 
-        <section className={`grid-container`}>
+        <section className={`grid-container col-two`}>
           {/* State of Origin Select */}
           <Select
+            className="grid-item"
             defaultValue={fields.stateOfOrigin}
             error={errorField.stateOfOrigin}
             selectValueHandler={selectStateOfOriginHandler}
@@ -688,6 +698,7 @@ const Register = (): JSX.Element => {
 
           {/* LGA of Origin Select */}
           <Select
+            className="grid-item"
             defaultValue={fields.lgaOfOrigin}
             error={errorField.lgaOfOrigin}
             selectValueHandler={selectLgaOriginHandler}
@@ -700,9 +711,10 @@ const Register = (): JSX.Element => {
         <h4 style={{ color: "#003a03" }}>Polling Unit Information</h4>
         <Separator />
 
-        <section className={`grid-container`}>
+        <section className={`grid-container col-two`}>
           {/* State Select */}
           <Select
+            className="grid-item"
             defaultValue={fields.stateOfResidence}
             error={errorField.stateOfResidence}
             selectValueHandler={selectStateOfResidenceHandler}
@@ -712,6 +724,7 @@ const Register = (): JSX.Element => {
 
           {/* LGA Select */}
           <Select
+            className="grid-item"
             defaultValue={fields.lgaOfResidence}
             error={errorField.lgaOfResidence}
             selectValueHandler={selectLgaResidenceHandler}
@@ -720,9 +733,10 @@ const Register = (): JSX.Element => {
           />
         </section>
 
-        <section className={`grid-container`}>
+        <section className={`grid-container col-two`}>
           {/* Ward Select */}
           <Select
+            className="grid-item"
             defaultValue={fields.ward}
             error={errorField.ward}
             selectValueHandler={selectWardHandler}
@@ -732,6 +746,7 @@ const Register = (): JSX.Element => {
 
           {/* Polling Unit Select */}
           <Select
+            className="grid-item"
             defaultValue={fields.pollingUnit}
             error={errorField.pollingUnit}
             selectValueHandler={selectPollingUnitHandler}
@@ -742,9 +757,10 @@ const Register = (): JSX.Element => {
 
         <Separator />
 
-        <section className={`grid-container`}>
+        <section className={`grid-container col-one`}>
           {/* Occupation Field */}
           <Input
+            className="grid-item"
             error={errorField.referral}
             name={"referral"}
             value={fields.referral}
