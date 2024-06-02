@@ -14,6 +14,7 @@ div.input {
 }
 
 div.input input {
+  background-color: var(--white);
   width: 100%;
   height: var(--ui-height);
 
