@@ -116,6 +116,7 @@ a {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .grid-container.col-one,
   .grid-container.col-two {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -136,21 +137,19 @@ a {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .grid-item {
-    grid-template-columns: 1fr;
-  }
-
-  .span-two-columns {
-    grid-column: span 1;
-  }
-}
-
-@media(min-width: 576px) and (min-width: 992px) {
   .grid-container.col-two {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .grid-container.col-one {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .grid-item {
+    grid-template-columns: 1fr;
+  }
+
+  .span-two-columns {
+    grid-column: span 1;
   }
 }

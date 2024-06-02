@@ -3,7 +3,7 @@
   width  : 10rem;
   height : var(--ui-height);
   border : none;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   color  : white;
 
   cursor: pointer;
