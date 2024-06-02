@@ -26,6 +26,11 @@ div.input input {
   transition: all 0.5s ease-in-out;
 }
 
+div.input input:disabled {
+  background-color: var(--white);
+  cursor: not-allowed;
+}
+
 div.input input:hover,
 div.input input:focus {
   border: 2px solid var(--border-color);

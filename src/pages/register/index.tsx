@@ -104,6 +104,9 @@ const Register = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
+  const { ref } = router.query;
+
+  console.log("REF: ", ref);
 
   const genders = [
     { value: "Male", label: "Male" },
@@ -121,19 +124,33 @@ const Register = (): JSX.Element => {
   ];
 
   const titles = [
-    { value: "Mr", label: "Mr" },
-    { value: "Mrs", label: "Mrs" },
-    { value: "Ms", label: "Ms" },
-    { value: "Prof", label: "Prof" },
-    { value: "Dr", label: "Dr" },
+    { value: "Mr.", label: "Mr." },
+    { value: "Mrs.", label: "Mrs." },
+    { value: "Ms.", label: "Ms." },
+    { value: "HRH", label: "HRH" },
     { value: "Chief", label: "Chief" },
-    { value: "Barr", label: "Barr" },
-    { value: "Senator", label: "Senator" },
+    { value: "Prof.", label: "Prof." },
+    { value: "Dr.", label: "Dr." },
+    { value: "Chief", label: "Chief" },
+    { value: "Barr.", label: "Barr." },
+    { value: "Sen.", label: "Sen." },
+    { value: "Govr.", label: "Govr." },
+    { value: "His Excellency", label: "is Excellency" },
+    { value: "Eze", label: "Eze" },
+    { value: "Oba", label: "Oba" },
+    { value: "Alhaji", label: "Alhaji" },
   ];
 
   useEffect(() => {
     fetchState();
   }, []);
+
+  useEffect(() => {
+    if (ref) {
+      const referralCode = Array.isArray(ref) ? ref[0] : ref;
+      setFields((values) => ({ ...values, referral: referralCode }));
+    }
+  }, [ref]);
 
   const fetchState = async () => {
     try {
@@ -760,6 +777,7 @@ const Register = (): JSX.Element => {
         <section className={`grid-container col-one`}>
           {/* Occupation Field */}
           <Input
+            disabled
             className="grid-item"
             error={errorField.referral}
             name={"referral"}
