@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Input.module.css";
 
 type inputProps = {
@@ -22,6 +22,14 @@ const Input = ({
   changeHandler,
   className,
 }: inputProps): JSX.Element => {
+  const datePlaceHolderRef = useRef<HTMLLabelElement>(null);
+
+  useEffect(() => {
+    if (datePlaceHolderRef.current) {
+      datePlaceHolderRef.current.style.display = value ? "none" : "flex";
+    }
+  }, [value]);
+  
   return (
     <div className={`${styles.input} ${className || ""}`}>
       <input
@@ -37,6 +45,11 @@ const Input = ({
         placeholder={placeholder}
         onChange={changeHandler}
       />
+      {type === "date" ? (
+        <label ref={datePlaceHolderRef} className={styles.datePlaceHolder}>
+          {placeholder}
+        </label>
+      ) : null}
       {/* {error ? (
         <span className={styles.error}>This field is required</span>
       ) : null} */}

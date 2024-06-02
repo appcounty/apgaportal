@@ -9,6 +9,8 @@ div.input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  position: relative;
 }
 
 div.input input {
@@ -41,6 +43,24 @@ div.input span.error {
   font-size: var(--text-small);
   color    : var(--danger);
   padding  : 0.2rem;
+}
+
+div.input .datePlaceHolder {
+  height: 2rem;
+  /* padding: 0 0.5rem; */
+  border-radius: 0.3rem 0 0 0.3rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 2;
+  left: 0.5rem;
+
+  background-color: white;
+  color: #7c7c7c;
+  font-family: verdana;
 }
 
 /*Devices larger than mobile phone*/
