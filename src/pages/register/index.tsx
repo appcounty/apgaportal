@@ -7,6 +7,8 @@ import { HTTPMethods, makeRequest } from "@/util/httpConfig";
 import { generateRandomCode } from "@/util/util";
 import { useRouter } from "next/router";
 import Alert from "@/components/ui/alert/Alert";
+import Head from "next/head";
+import { useBroswer } from "@/providers/BrowserProvider";
 
 interface Fields {
   title: string;
@@ -135,14 +137,17 @@ const Register = (): JSX.Element => {
     { value: "Barr.", label: "Barr." },
     { value: "Sen.", label: "Sen." },
     { value: "Govr.", label: "Govr." },
-    { value: "His Excellency", label: "is Excellency" },
+    { value: "His Excellency", label: "His Excellency" },
     { value: "Eze", label: "Eze" },
     { value: "Oba", label: "Oba" },
     { value: "Alhaji", label: "Alhaji" },
   ];
 
+  const { setBrowserTitle } = useBroswer();
+
   useEffect(() => {
     fetchState();
+    setBrowserTitle("Register");
   }, []);
 
   useEffect(() => {
@@ -566,237 +571,243 @@ const Register = (): JSX.Element => {
   };
 
   return (
-    <div className={styles.main}>
-      {isError ? (
-        <Alert
-          type={"error"}
-          message={errorMessage}
-          clickHandler={clickHandler}
-        />
-      ) : null}
-      <Form
-        title="Bio information"
-        className={[styles.form].join("")}
-        submitHandler={submitHandler}
-      >
-        {/* Title Field */}
-        <Select
-          error={errorField.title}
-          selectValueHandler={selectTitleHandler}
-          placeholder="title"
-          options={titles}
-        />
-
-        {/* Gender Select */}
-        <Select
-          defaultValue={fields.gender}
-          error={errorField.gender}
-          selectValueHandler={selectGenderHandler}
-          placeholder="Gender"
-          options={genders}
-        />
-
-        <Separator />
-
-        <section className={`grid-container`}>
-          {/* Firstname Field */}
-          <Input
-            className="grid-item"
-            error={errorField.firstName}
-            name={"firstName"}
-            value={fields.firstName}
-            placeholder="Firstname"
-            changeHandler={changeHandler}
+    <>
+      <Head>
+        <title>Register</title>
+        
+      </Head>
+      <div className={styles.main}>
+        {isError ? (
+          <Alert
+            type={"error"}
+            message={errorMessage}
+            clickHandler={clickHandler}
           />
-
-          {/* Middle name Field */}
-          <Input
-            className="grid-item"
-            error={errorField.middleName}
-            name={"middleName"}
-            value={fields.middleName}
-            placeholder="Middle name"
-            changeHandler={changeHandler}
-          />
-
-          {/* Surname Field */}
-          <Input
-            className="grid-item span-two-columns"
-            error={errorField.surname}
-            name={"surname"}
-            value={fields.surname}
-            placeholder="Surname"
-            changeHandler={changeHandler}
-          />
-        </section>
-
-        <Separator />
-
-        <section className={`grid-container`}>
-          {/* Date of Field */}
-          <Input
-            className="grid-item"
-            error={errorField.dateOfBirth}
-            type="date"
-            name={"dateOfBirth"}
-            value={fields.dateOfBirth}
-            placeholder="Date of Birth"
-            changeHandler={changeHandler}
-          />
-
-          {/* Email Field */}
-          <Input
-            className="grid-item"
-            error={errorField.email}
-            type="email"
-            name={"email"}
-            value={fields.email}
-            placeholder="Email"
-            changeHandler={changeHandler}
-          />
-
-          {/* phoneNumber Field */}
-          <Input
-            className="grid-item span-two-columns"
-            error={errorField.phoneNumber}
-            type="number"
-            name={"phoneNumber"}
-            value={fields.phoneNumber}
-            placeholder="Phone number"
-            changeHandler={changeHandler}
-          />
-        </section>
-
-        <Separator />
-
-        <section className={`grid-container`}>
-          {/* Vin Field */}
-          <Input
-            className="grid-item"
-            error={errorField.vin}
-            name={"vin"}
-            value={fields.vin}
-            placeholder="VIN"
-            changeHandler={changeHandler}
-          />
-
-          {/* Occupation Field */}
-          <Input
-            className="grid-item"
-            error={errorField.occupation}
-            name={"occupation"}
-            value={fields.occupation}
-            placeholder="Occupation"
-            changeHandler={changeHandler}
-          />
-
-          {/* Religion Select */}
+        ) : null}
+        <Form
+          title="Bio information"
+          className={[styles.form].join("")}
+          submitHandler={submitHandler}
+        >
+          {/* Title Field */}
           <Select
-            className="grid-item span-two-columns"
-            error={errorField.religion}
-            selectValueHandler={selectReligionHandler}
-            placeholder="Religion"
-            options={religions}
+            error={errorField.title}
+            selectValueHandler={selectTitleHandler}
+            placeholder="title"
+            options={titles}
           />
-        </section>
 
-        <Separator />
-
-        <section className={`grid-container col-two`}>
-          {/* State of Origin Select */}
+          {/* Gender Select */}
           <Select
-            className="grid-item"
-            defaultValue={fields.stateOfOrigin}
-            error={errorField.stateOfOrigin}
-            selectValueHandler={selectStateOfOriginHandler}
-            placeholder="State of Origin"
-            options={states}
+            defaultValue={fields.gender}
+            error={errorField.gender}
+            selectValueHandler={selectGenderHandler}
+            placeholder="Gender"
+            options={genders}
           />
 
-          {/* LGA of Origin Select */}
-          <Select
-            className="grid-item"
-            defaultValue={fields.lgaOfOrigin}
-            error={errorField.lgaOfOrigin}
-            selectValueHandler={selectLgaOriginHandler}
-            placeholder="LGA of Origin"
-            options={lgaOfOrigin}
-          />
-        </section>
+          <Separator />
 
-        <Separator />
-        <h4 style={{ color: "#003a03" }}>Polling Unit Information</h4>
-        <Separator />
+          <section className={`grid-container`}>
+            {/* Firstname Field */}
+            <Input
+              className="grid-item"
+              error={errorField.firstName}
+              name={"firstName"}
+              value={fields.firstName}
+              placeholder="Firstname"
+              changeHandler={changeHandler}
+            />
 
-        <section className={`grid-container col-two`}>
-          {/* State Select */}
-          <Select
-            className="grid-item"
-            defaultValue={fields.stateOfResidence}
-            error={errorField.stateOfResidence}
-            selectValueHandler={selectStateOfResidenceHandler}
-            placeholder="State"
-            options={states}
-          />
+            {/* Middle name Field */}
+            <Input
+              className="grid-item"
+              error={errorField.middleName}
+              name={"middleName"}
+              value={fields.middleName}
+              placeholder="Middle name"
+              changeHandler={changeHandler}
+            />
 
-          {/* LGA Select */}
-          <Select
-            className="grid-item"
-            defaultValue={fields.lgaOfResidence}
-            error={errorField.lgaOfResidence}
-            selectValueHandler={selectLgaResidenceHandler}
-            placeholder="Local government"
-            options={lgaOfResidence}
-          />
-        </section>
+            {/* Surname Field */}
+            <Input
+              className="grid-item span-two-columns"
+              error={errorField.surname}
+              name={"surname"}
+              value={fields.surname}
+              placeholder="Surname"
+              changeHandler={changeHandler}
+            />
+          </section>
 
-        <section className={`grid-container col-two`}>
-          {/* Ward Select */}
-          <Select
-            className="grid-item"
-            defaultValue={fields.ward}
-            error={errorField.ward}
-            selectValueHandler={selectWardHandler}
-            placeholder="Ward"
-            options={wards}
-          />
+          <Separator />
 
-          {/* Polling Unit Select */}
-          <Select
-            className="grid-item"
-            defaultValue={fields.pollingUnit}
-            error={errorField.pollingUnit}
-            selectValueHandler={selectPollingUnitHandler}
-            placeholder="Polling Unit"
-            options={pollingUnits}
-          />
-        </section>
+          <section className={`grid-container`}>
+            {/* Date of Field */}
+            <Input
+              className="grid-item"
+              error={errorField.dateOfBirth}
+              type="date"
+              name={"dateOfBirth"}
+              value={fields.dateOfBirth}
+              placeholder="Date of Birth"
+              changeHandler={changeHandler}
+            />
 
-        <Separator />
+            {/* Email Field */}
+            <Input
+              className="grid-item"
+              error={errorField.email}
+              type="email"
+              name={"email"}
+              value={fields.email}
+              placeholder="Email"
+              changeHandler={changeHandler}
+            />
 
-        <section className={`grid-container col-one`}>
-          {/* Occupation Field */}
-          <Input
-            disabled
-            className="grid-item"
-            error={errorField.referral}
-            name={"referral"}
-            value={fields.referral}
-            placeholder="Referral"
-            changeHandler={changeHandler}
-          />
-        </section>
+            {/* phoneNumber Field */}
+            <Input
+              className="grid-item span-two-columns"
+              error={errorField.phoneNumber}
+              type="number"
+              name={"phoneNumber"}
+              value={fields.phoneNumber}
+              placeholder="Phone number"
+              changeHandler={changeHandler}
+            />
+          </section>
 
-        <section className={`${styles.section} ${styles.buttonWrapper}`}>
-          <Button
-            loading={loading}
-            type="submit"
-            clickHandler={() => {}}
-            text="Register"
-          />
-        </section>
-      </Form>
-    </div>
+          <Separator />
+
+          <section className={`grid-container`}>
+            {/* Vin Field */}
+            <Input
+              className="grid-item"
+              error={errorField.vin}
+              name={"vin"}
+              value={fields.vin}
+              placeholder="VIN"
+              changeHandler={changeHandler}
+            />
+
+            {/* Occupation Field */}
+            <Input
+              className="grid-item"
+              error={errorField.occupation}
+              name={"occupation"}
+              value={fields.occupation}
+              placeholder="Occupation"
+              changeHandler={changeHandler}
+            />
+
+            {/* Religion Select */}
+            <Select
+              className="grid-item span-two-columns"
+              error={errorField.religion}
+              selectValueHandler={selectReligionHandler}
+              placeholder="Religion"
+              options={religions}
+            />
+          </section>
+
+          <Separator />
+
+          <section className={`grid-container col-two`}>
+            {/* State of Origin Select */}
+            <Select
+              className="grid-item"
+              defaultValue={fields.stateOfOrigin}
+              error={errorField.stateOfOrigin}
+              selectValueHandler={selectStateOfOriginHandler}
+              placeholder="State of Origin"
+              options={states}
+            />
+
+            {/* LGA of Origin Select */}
+            <Select
+              className="grid-item"
+              defaultValue={fields.lgaOfOrigin}
+              error={errorField.lgaOfOrigin}
+              selectValueHandler={selectLgaOriginHandler}
+              placeholder="LGA of Origin"
+              options={lgaOfOrigin}
+            />
+          </section>
+
+          <Separator />
+          <h4 style={{ color: "#003a03" }}>Polling Unit Information</h4>
+          <Separator />
+
+          <section className={`grid-container col-two`}>
+            {/* State Select */}
+            <Select
+              className="grid-item"
+              defaultValue={fields.stateOfResidence}
+              error={errorField.stateOfResidence}
+              selectValueHandler={selectStateOfResidenceHandler}
+              placeholder="State"
+              options={states}
+            />
+
+            {/* LGA Select */}
+            <Select
+              className="grid-item"
+              defaultValue={fields.lgaOfResidence}
+              error={errorField.lgaOfResidence}
+              selectValueHandler={selectLgaResidenceHandler}
+              placeholder="Local government"
+              options={lgaOfResidence}
+            />
+          </section>
+
+          <section className={`grid-container col-two`}>
+            {/* Ward Select */}
+            <Select
+              className="grid-item"
+              defaultValue={fields.ward}
+              error={errorField.ward}
+              selectValueHandler={selectWardHandler}
+              placeholder="Ward"
+              options={wards}
+            />
+
+            {/* Polling Unit Select */}
+            <Select
+              className="grid-item"
+              defaultValue={fields.pollingUnit}
+              error={errorField.pollingUnit}
+              selectValueHandler={selectPollingUnitHandler}
+              placeholder="Polling Unit"
+              options={pollingUnits}
+            />
+          </section>
+
+          <Separator />
+
+          <section className={`grid-container col-one`}>
+            {/* Occupation Field */}
+            <Input
+              disabled
+              className="grid-item"
+              error={errorField.referral}
+              name={"referral"}
+              value={fields.referral}
+              placeholder="Referral"
+              changeHandler={changeHandler}
+            />
+          </section>
+
+          <section className={`${styles.section} ${styles.buttonWrapper}`}>
+            <Button
+              loading={loading}
+              type="submit"
+              clickHandler={() => {}}
+              text="Register"
+            />
+          </section>
+        </Form>
+      </div>
+    </>
   );
 };
 

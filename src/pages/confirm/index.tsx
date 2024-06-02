@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Display from "@/components/display/Display";
 import { HTTPMethods, makeRequest } from "@/util/httpConfig";
 import Link from "next/link";
+import { useBroswer } from "@/providers/BrowserProvider";
 
 const Confirm = (): JSX.Element => {
   const router = useRouter();
@@ -12,6 +13,12 @@ const Confirm = (): JSX.Element => {
   const [items, setItems] = useState<{ label: string; value: string }[]>([]);
   const [name, setName] = useState<string>("");
   const [status, setStatus] = useState<string>("");
+
+  const { setBrowserTitle } = useBroswer();
+
+  useEffect(()=>{
+    setBrowserTitle("Confirmation");
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

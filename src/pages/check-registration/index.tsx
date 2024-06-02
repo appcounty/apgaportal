@@ -1,10 +1,11 @@
-import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import Alert from "@/components/ui/alert/Alert";
 import Form, { Input } from "@/components/form/Form";
 import Button from "@/components/ui/button/Button";
 import { HTTPMethods, makeRequest } from "@/util/httpConfig";
 import { useRouter } from "next/router";
+import { useBroswer } from "@/providers/BrowserProvider";
 
 const CheckRegistration = (): JSX.Element => {
   const [isError, setIsError] = useState<boolean>(false);
@@ -14,6 +15,12 @@ const CheckRegistration = (): JSX.Element => {
   const [referenceCodeError, setReferenceCodeError] = useState<boolean>(false);
 
   const router = useRouter();
+
+  const { setBrowserTitle } = useBroswer();
+
+  useEffect(() => {
+    setBrowserTitle("Registration Status");
+  }, []);
 
   const clickHandler = () => {
     setIsError(false);
